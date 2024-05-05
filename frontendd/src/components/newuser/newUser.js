@@ -27,7 +27,7 @@ const Newuser = () => {
   };
   const submitHandler = async () => {
     try {
-      const response = await fetch("http://localhost:5454/signup", {
+      const response = await fetch("https://pensieve-api-next.vercel.app/signup", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

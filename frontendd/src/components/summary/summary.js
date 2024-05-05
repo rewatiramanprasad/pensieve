@@ -126,7 +126,7 @@ const Summary = () => {
   useEffect(() => {
     const submitHandler = async () => {
         try {
-          const response = await fetch(`http://localhost:5454/gps/summary`, {
+          const response = await fetch(`https://pensieve-api-next.vercel.app/gps/summary`, {
             method:"GET",
             headers: {
               "Content-Type": "application/json",

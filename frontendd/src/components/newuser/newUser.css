@@ -8,17 +8,17 @@
         text-align: center;
         justify-content: center;
         display:flex;
-        padding: 90px 0 90px 0;
+        padding: 60px 0 60px 0;
         color:green;
         
     }
     .signupsub-main{
         display: flex;
         justify-content: center;
-        height: 550px;
-        width: 65%;
+        height: 433px;
+        width: 35%;
         /* box-shadow: 11px 12px 13px 12 px rgb(207, 207, 207) ; */
-        padding-top: 30px;
+        padding-top: 8px;
         padding-bottom:10px;
         border-radius:60px;
         background-color:black ;

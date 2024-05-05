@@ -134,6 +134,7 @@ const Summary = () => {
             
           });
           const dbData = await response.json();
+          console.log(dbData)
           if(dbData.success){
             console.log("success")
             console.log(dbData.data);
@@ -155,7 +156,6 @@ const Summary = () => {
      submitHandler();
     //  let str=`{data:"hello"}`
     //   console.log(JSON.parse(str))
-     
   },[]);
   const handleFetch=()=>{}
 //   const handleChangeRowsPerPage = (event) => {

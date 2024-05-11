@@ -105,6 +105,7 @@ const Summary = () => {
   const handlePage=async(data)=>{
     const startIndex=(page-1)*limit;
     const endIndex=page*limit;
+    console.log("printing index")
     console.log(startIndex,endIndex);
    let  result=await data.slice(startIndex,endIndex);
     // setData(data);
@@ -138,8 +139,8 @@ const Summary = () => {
           if(dbData.success){
             console.log("success")
             console.log(dbData.data);
-            setMainData(dbData.data);
-            setData(await handlePage(mainData));
+            // setMainData(dbData.data);
+            setData( await handlePage(dbData.data));   //await handlePage(mainData)
           }else{
             setIsError(true);
             setError(dbData.message|| "something went wrong");
@@ -190,6 +191,7 @@ const Summary = () => {
     <div className="summaryMain">
       <div className="  subSummaryMain  ">
         <table className="table">
+          <tbody>
           <tr>
             <td colSpan="2">
               <div className="searchWrapper">
@@ -209,15 +211,17 @@ const Summary = () => {
               </div>
             </td>
           </tr>
+          </tbody>
         </table>
         <table className="table">
           <thead>
+            
             <tr>
               <th scope="col">
                 DeviceId
                 <FontAwesomeIcon
                   onClick={() => {
-                    sorting("DeviceId");
+                    // sorting("DeviceId");
                   }}
                   icon={order === "ASC" ? faArrowUp : faArrowDown}
                 />
@@ -226,7 +230,7 @@ const Summary = () => {
                 DeviceType
                 <FontAwesomeIcon
                   onClick={() => {
-                    sorting("DeviceType");
+                    // sorting("DeviceType");
                   }}
                   className="hello"
                   icon={order === "ASC" ? faArrowUp : faArrowDown}
@@ -240,27 +244,30 @@ const Summary = () => {
           </thead>
           <tbody>
             {data.map((d) => (
+              
               <tr key={d.id}>
-                <td>{d.DeviceId}</td>
-                <td>{d.DeviceType}</td>
-                <td>{d.Timestamp}</td>
-                <td>{d.Location}</td>
-                <td colspan="5">
+                
+                <td>{d.deviceid}</td>
+                <td>{d.devicetype}</td>
+                <td>{d.timestamp}</td>
+                <td>{d.location}</td>
+                <td colSpan="5">
                   {/* <span className='revelar'><span className='hidden'>see details</span>-&gt;</span> */}
                   <button
                     type="button"
-                    class=""
+                    className=""
                     data-toggle="tooltip"
                     data-placement="left"
                     title="see details"
                   >
                     
-                    <Link className="summaryLink" to={`/gps/details/${d.DeviceId}/${d.DeviceType}`}>
+                    <Link className="summaryLink" to={`/gps/details/${d.deviceid}/${d.devicetype}`}>
                     -&gt;
                     </Link>
                   </button>
                 </td>
               </tr>
+
             ))}
           </tbody>
         </table>

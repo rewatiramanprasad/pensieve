@@ -32,14 +32,14 @@ const Details=()=>{
             //   if(!dbData.ok){
             //     throw new Error(data.message);
             //   }
-              console.log(data);
-              setData(dbData.data.table);
-              const temp=dbData.data.pieChart;
+              console.log(dbData.data[0]);
+              setData(dbData.data[0].table);
+              const temp=dbData.data[0].pieChart;
               let mapArray=[];
               if(temp.length>0){
                 for(let i=0;i<temp.length;i++){
                     let map={}
-                    map.title=temp[i].LOCATION;
+                    map.title=temp[i].location;
                     map.value=temp[i].percentage;
                     var randomColor = "#000000".replace(/0/g,function(){return (~~(Math.random()*16)).toString(16);});
                     map.color=randomColor;
@@ -64,61 +64,61 @@ const Details=()=>{
     //    }
          
       },[]);
-  const result=  {
-        "data": {
-            "table": [
-                {
-                    "DeviceId": "D-1569",
-                    "DeviceType": "Asset",
-                    "Timestamp": "31-08-2022 10:15",
-                    "Location": "L4"
-                },
-                {
-                    "DeviceId": "D-1569",
-                    "DeviceType": "Asset",
-                    "Timestamp": "31-08-2022 10:20",
-                    "Location": "L4"
-                },
-                {
-                    "DeviceId": "D-1569",
-                    "DeviceType": "Asset",
-                    "Timestamp": "31-08-2022 10:25",
-                    "Location": "L1"
-                },
-                {
-                    "DeviceId": "D-1569",
-                    "DeviceType": "Asset",
-                    "Timestamp": "31-08-2022 10:30",
-                    "Location": "L1"
-                },
-                {
-                    "DeviceId": "D-1569",
-                    "DeviceType": "Asset",
-                    "Timestamp": "31-08-2022 10:35",
-                    "Location": "L2"
-                }
-            ],
-            "pieChart": [
-                {
-                    "totaltime": 10,
-                    "totalcount": 2,
-                    "percentage": "40%"
-                },
-                {
-                    "totaltime": 5,
-                    "totalcount": 1,
-                    "percentage": "20%"
-                },
-                {
-                    "totaltime": 10,
-                    "totalcount": 2,
-                    "percentage": "40%"
-                }
-            ]
-        },
-        "success": true,
-        "message": "Data fetch successfuly"
-    }
+//   const result=  {
+//         "data": {
+//             "table": [
+//                 {
+//                     "DeviceId": "D-1569",
+//                     "DeviceType": "Asset",
+//                     "Timestamp": "31-08-2022 10:15",
+//                     "Location": "L4"
+//                 },
+//                 {
+//                     "DeviceId": "D-1569",
+//                     "DeviceType": "Asset",
+//                     "Timestamp": "31-08-2022 10:20",
+//                     "Location": "L4"
+//                 },
+//                 {
+//                     "DeviceId": "D-1569",
+//                     "DeviceType": "Asset",
+//                     "Timestamp": "31-08-2022 10:25",
+//                     "Location": "L1"
+//                 },
+//                 {
+//                     "DeviceId": "D-1569",
+//                     "DeviceType": "Asset",
+//                     "Timestamp": "31-08-2022 10:30",
+//                     "Location": "L1"
+//                 },
+//                 {
+//                     "DeviceId": "D-1569",
+//                     "DeviceType": "Asset",
+//                     "Timestamp": "31-08-2022 10:35",
+//                     "Location": "L2"
+//                 }
+//             ],
+//             "pieChart": [
+//                 {
+//                     "totaltime": 10,
+//                     "totalcount": 2,
+//                     "percentage": "40%"
+//                 },
+//                 {
+//                     "totaltime": 5,
+//                     "totalcount": 1,
+//                     "percentage": "20%"
+//                 },
+//                 {
+//                     "totaltime": 10,
+//                     "totalcount": 2,
+//                     "percentage": "40%"
+//                 }
+//             ]
+//         },
+//         "success": true,
+//         "message": "Data fetch successfuly"
+//     }
     const handleErrorClose = (event, reason) => {
         if (reason === 'clickaway') {
           return;
@@ -160,9 +160,9 @@ return(
         <tbody>
         {
             data.map((d)=>(
-                <tr>
-                <td>{d.Timestamp}</td>
-                <td>{d.Location}</td>
+                <tr key={d.id}>
+                <td>{d.timestamp}</td>
+                <td>{d.location}</td>
                 </tr>
             ))
         }
